@@ -1,0 +1,6 @@
+en:
+  theme_metadata:
+    description: "SLMS Space Booking Calendar Widet"
+  slms_calendar_widget:
+    title: "SLMS Calendar Widget"
+    temp_msg: "Its not anything yet"

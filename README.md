@@ -1,1 +1,1 @@
-# SLMS_discourse_plugin
+# SLMS Discord Calendar Widget
