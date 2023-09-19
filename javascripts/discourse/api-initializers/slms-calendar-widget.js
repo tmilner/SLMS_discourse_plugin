@@ -1,11 +1,14 @@
 import { apiInitializer } from "discourse/lib/api";
 import User from "discourse/models/user";
 
-export default apiInitializer("0.11.1", (api) => {
+export default apiInitializer("0.1", (api) => {
+  console.log("SLMS Init")
   // If login is required
   if (settings.require_login && !api.getCurrentUser()) {
     return;
   }
+
+  console.log("SLMS Init 1")
 
   // If a trust level is required
   if (User.currentProp("trust_level") < settings.minimum_trust_level) {
