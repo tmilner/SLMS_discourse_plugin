@@ -37,7 +37,7 @@ export default apiInitializer("0.1", (api) => {
     const headerState = helper.widget.parentWidget.state;
     return helper.attach("header-dropdown", {
       title: themePrefix("slms_calendar_widget.title"),
-      icon: "fab-calendar",
+      icon: "calendar-alt",
       active: headerState.slmsCalendarWidgetVisible,
       action: "toggleSLMSCalendarWidget",
     });
