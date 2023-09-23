@@ -8,14 +8,14 @@ createWidget("slms-calendar-modal", {
     let $target = $(event.target);
     let id = $target.data("id");
     if (id == "create") {
-      this.container.lookup("controller:composer").open({
+      this.modifyClass("controller:composer", {
         action: Composer.CREATE_TOPIC,
-        draftKey: Composer.NEW_TOPIC_KEY,
+       draftKey: 'new_topic'
       });
     }
   },
 
-  html(attrs, state) {
+  html() {
     let buttonHtml = h(
       "li",
       { attributes: { "data-name": "Create" } },
