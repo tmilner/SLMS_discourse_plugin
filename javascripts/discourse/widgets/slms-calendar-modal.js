@@ -35,9 +35,9 @@ createWidget("slms-booking-modal", {
       h("a.widget-link", { attributes: { "data-id": "create" } }, "Create")
     );
 
-    let mainBody = h("h1", "Create Space Booking");
+    let mainBody = [h("h1", "Create Space Booking")];
     return this.attach("menu-panel", {
-      contents: () => this.attach("slms-booking-date-picker")
+      contents: () => [this.attach("slms-booking-date-picker")]
     });
   },
 
