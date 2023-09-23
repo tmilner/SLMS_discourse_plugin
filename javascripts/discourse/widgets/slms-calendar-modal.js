@@ -7,11 +7,15 @@ createWidget("slms-calendar-modal", {
   click(event) {
     let $target = $(event.target);
     let id = $target.data("id");
+
+    const currentUser = getOwner(this).lookup("current-user:main");
+    if (!currentUser) {
+      showModal("login");
+      return;
+    }
+
     if (id == "create") {
-      this.modifyClass("controller:composer", {
-        action: Composer.CREATE_TOPIC,
-       draftKey: 'new_topic'
-      });
+      this.sendWidgetAction("submitSLMSCalendarWidget");
     }
   },
 
