@@ -1,5 +1,6 @@
 import { apiInitializer } from "discourse/lib/api";
 import User from "discourse/models/user";
+import { getOwner } from "discourse-common/lib/get-owner";
 
 export default apiInitializer("0.1", (api) => {
   console.log("SLMS Init")
