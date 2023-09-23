@@ -2,6 +2,18 @@ import { createWidget } from "discourse/widgets/widget";
 import { h } from "virtual-dom";
 import { hbs } from "ember-cli-htmlbars";
 
+createWidget("slms-booking-date-picker", {
+  tagName: "slms-booking-data-picker",
+  template: hbs`<DateTimeInputRange
+  @from={{startsAt}}
+  @to={{endsAt}}
+  @toTimeFirst={{true}}
+  @clearable={{true}}
+  @timezone="Europe/London"
+  @onChange={{changeSLMSBookingDates}}
+/>`,
+});
+
 createWidget("slms-booking-modal", {
   tagName: "div.slms-booking-panel",
   buildKey: () => "create_booking",
@@ -28,17 +40,10 @@ createWidget("slms-booking-modal", {
 
     return this.attach("menu-panel", {
       contents: () => [
-        h("div.picker", [
-          hbs`<DateTimeInputRange
-                @from={{startsAt}}
-                @to={{endsAt}}
-                @toTimeFirst={{true}}
-                @clearable={{true}}
-                @timezone="Europe/London"
-                @onChange={{changeSLMSBookingDates}}
-              />`,
-          buttonHtml,
-        ]),
+        h(
+          "div.picker",
+          [this.attach("slms-booking-date-picker", attrs), buttonHtml]
+        ),
       ],
     });
   },
