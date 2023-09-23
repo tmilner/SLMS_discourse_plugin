@@ -1,5 +1,6 @@
 import { createWidget } from "discourse/widgets/widget";
 import { h } from "virtual-dom";
+import { hbs } from "ember-cli-htmlbars";
 
 createWidget("slms-calendar-modal", {
   tagName: "div.slms-calendar-panel",
