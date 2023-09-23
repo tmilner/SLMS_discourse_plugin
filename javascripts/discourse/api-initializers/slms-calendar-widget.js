@@ -62,6 +62,8 @@ export default apiInitializer("0.1", (api) => {
     getOwner(this).lookup("controller:composer").open({
       action: Composer.CREATE_TOPIC,
       draftKey: "new_topic",
+      categoryId: settings.calendar_category,
+      skipJumpOnSave: true  
     });
   });
 
