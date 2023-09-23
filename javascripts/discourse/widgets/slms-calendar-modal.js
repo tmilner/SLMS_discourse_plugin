@@ -8,12 +8,6 @@ createWidget("slms-calendar-modal", {
     let $target = $(event.target);
     let id = $target.data("id");
 
-    const currentUser = getOwner(this).lookup("current-user:main");
-    if (!currentUser) {
-      showModal("login");
-      return;
-    }
-
     if (id == "create") {
       this.sendWidgetAction("submitSLMSCalendarWidget");
     }

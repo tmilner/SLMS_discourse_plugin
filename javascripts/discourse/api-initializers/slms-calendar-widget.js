@@ -51,6 +51,12 @@ export default apiInitializer("0.1", (api) => {
   });
 
   api.attachWidgetAction("slms-calendar-modal", "submitSLMSCalendarWidget", function(){
+    const currentUser = getOwner(this).lookup("current-user:main");
+    if (!currentUser) {
+      showModal("login");
+      return;
+    }
+
     getOwner(this).lookup("controller:composer").open({
       action: Composer.CREATE_TOPIC,
       draftKey: "new_topic",
