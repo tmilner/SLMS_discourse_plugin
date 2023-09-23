@@ -1,6 +1,6 @@
 import { createWidget } from "discourse/widgets/widget";
 import { h } from "virtual-dom";
-import { hbs } from "ember-cli-htmlbars";
+import hbs from "discourse/widgets/hbs-compiler";
 
 createWidget("slms-booking-date-picker", {
   tagName: "div.slms-booking-data-picker",
