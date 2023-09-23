@@ -3,7 +3,7 @@ import { h } from "virtual-dom";
 import { hbs } from "ember-cli-htmlbars";
 
 createWidget("slms-booking-date-picker", {
-  tagName: "div.slms-booking-data-picker",
+  tagName: "div.slms-booking-data-picker2",
   template: hbs`<DateTimeInputRange
   @toTimeFirst={{true}}
   @clearable={{true}}
@@ -38,7 +38,7 @@ createWidget("slms-booking-modal", {
 
     return this.attach("menu-panel", {
       contents: () =>
-        h("div.picker", this.attach("slms-booking-date-picker"), buttonHtml),
+        h("div.picker", [h(this.attach("slms-booking-date-picker")), buttonHtml]),
     });
   },
 
