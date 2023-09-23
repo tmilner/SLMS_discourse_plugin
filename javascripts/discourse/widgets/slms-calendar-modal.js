@@ -7,7 +7,6 @@ createWidget("slms-booking-date-picker", {
   template: hbs`<DateTimeInputRange
   @toTimeFirst={{true}}
   @clearable={{true}}
-  @timezone={{"Europe/London"}}
   @onChange={{action: "changeSLMSBookingDates"}}
 />`,
 });
