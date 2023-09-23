@@ -39,7 +39,7 @@ createWidget("slms-booking-modal", {
 
     return this.attach("menu-panel", {
       contents: () =>
-        h("div.picker", [this.attach("slms-booking-date-picker"), buttonHtml]),
+        h("div.picker", this.attach("slms-booking-date-picker"), buttonHtml),
     });
   },
 
