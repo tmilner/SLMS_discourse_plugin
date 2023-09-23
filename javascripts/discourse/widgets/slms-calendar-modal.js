@@ -4,15 +4,14 @@ import { hbs } from "ember-cli-htmlbars";
 
 createWidget("slms-booking-date-picker", {
   tagName: "div.slms-booking-data-picker",
-  template: hbs`<h1>HI</h1>`,
+  template: hbs`<DateTimeInputRange
+  @toTimeFirst={{true}}
+  @clearable={{true}}
+  @timezone="Europe/London"
+  @onChange={{action: "changeSLMSBookingDates"}}
+/>`,
 });
 
-//<DateTimeInputRange
-//   @toTimeFirst={{true}}
-//   @clearable={{true}}
-//   @timezone="Europe/London"
-//   @onChange={{action: "changeSLMSBookingDates"}}
-// />
 createWidget("slms-booking-modal", {
   tagName: "div.slms-booking-panel",
   buildKey: () => "create_booking",

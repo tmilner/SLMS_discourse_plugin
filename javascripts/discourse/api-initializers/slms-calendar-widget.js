@@ -4,13 +4,13 @@ import { getOwner } from "discourse-common/lib/get-owner";
 import Composer from "discourse/models/composer";
 
 export default apiInitializer("0.1", (api) => {
-  console.log("SLMS Init")
+  console.log("SLMS Init");
   // If login is required
   if (settings.require_login && !api.getCurrentUser()) {
     return;
   }
 
-  console.log("SLMS Init 1")
+  console.log("SLMS Init 1");
 
   // If a trust level is required
   if (User.currentProp("trust_level") < settings.minimum_trust_level) {
@@ -52,32 +52,52 @@ export default apiInitializer("0.1", (api) => {
     }
   });
 
-  api.attachWidgetAction("slms-booking-modal", "changeSLMSBookingDates", function(changes){
-    console.log(this);
-    this.parentWidget.state.start = changes.from;
-    this.parentWidget.state.ends = changes.to;
-  });
-  
-  api.attachWidgetAction("slms-booking-modal", "submitSLMSBookingWidget", function(){
-    const currentUser = getOwner(this).lookup("current-user:main");
-    if (!currentUser) {
-      showModal("login");
-      return;
+  api.attachWidgetAction(
+    "slms-booking-modal",
+    "changeSLMSBookingDates",
+    function (changes) {
+      console.log(this);
+      this.parentWidget.state.start = changes.from;
+      this.parentWidget.state.ends = changes.to;
     }
+  );
 
-    console.log(getOwner(this));
-    
-    getOwner(this).lookup("controller:composer").open({
-      action: Composer.CREATE_TOPIC,
-      draftKey: "new_topic",
-      title: "Space Open",
-      topicBody: "[event start=\"2023-09-23 11:07\" status=\"standalone\" timezone=\"Europe/London\" minimal=\"true\" end=\"2023-09-23 12:07\"]\n[/event]",
-      categoryId: settings.calendar_category,
-      skipJumpOnSave: true  
-    });
-  });
+  api.attachWidgetAction(
+    "slms-booking-modal",
+    "submitSLMSBookingWidget",
+    function () {
+      const currentUser = getOwner(this).lookup("current-user:main");
+      if (!currentUser) {
+        showModal("login");
+        return;
+      }
+
+      console.log(this);
+
+      console.log(this.state.start);
+
+      if (this.state.start && this.state.end) {
+        getOwner(this)
+          .lookup("controller:composer")
+          .open({
+            action: Composer.CREATE_TOPIC,
+            draftKey: "new_topic",
+            title: "Space Open",
+            topicBody:
+              '[event start="' +
+              this.state.start +
+              '" status="standalone" timezone="Europe/London" minimal="true" end="' +
+              this.state.end +
+              '"]\n[/event]',
+            categoryId: settings.calendar_category,
+            skipJumpOnSave: true,
+          });
+      }
+    }
+  );
 
   api.attachWidgetAction("header", "toggleSLMSBookingWidget", function () {
-    this.state.slmsCalendarWidgetVisible = !this.state.slmsCalendarWidgetVisible;
+    this.state.slmsCalendarWidgetVisible =
+      !this.state.slmsCalendarWidgetVisible;
   });
 });
