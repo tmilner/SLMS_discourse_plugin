@@ -3,17 +3,22 @@ import { h } from "virtual-dom";
 
 createWidget("slms-calendar-modal", {
   tagName: "div.slms-calendar-panel",
+  buildKey: () => "create_booking",
+
+  defaultState() {
+    return { start: null, end: null };
+  },
 
   click(event) {
     let $target = $(event.target);
     let id = $target.data("id");
 
     if (id == "create") {
-      this.sendWidgetAction("submitSLMSCalendarWidget");
+      this.sendWidgetAction("submitSLMSBookingWidget");
     }
   },
 
-  html() {
+  html(attrs, state) {
     let buttonHtml = h(
       "li",
       { attributes: { "data-name": "Create" } },
@@ -22,14 +27,25 @@ createWidget("slms-calendar-modal", {
 
     return this.attach("menu-panel", {
       contents: () => [
-        h("ul.menu-links.columned", [buttonHtml]),
-        h(".clearfix"),
-        h("hr"),
+        hbs`<DateTimeInputRange
+              @from={{startsAt}}
+              @to={{endsAt}}
+              @toTimeFirst={{true}}
+              @clearable={{true}}
+              @timezone={{"Europe/London"}}
+              @onChange={{changeSLMSBookingDates}}
+            />`,
+        buttonHtml,
       ],
     });
   },
 
+  changeSLMSBookingDates(changes){
+    this.state.start = changes.from;
+    this.state.ends = changes.to;
+  },
+
   clickOutside() {
-    this.sendWidgetAction("toggleSLMSCalendarWidget");
+    this.sendWidgetAction("toggleSLMSBookingWidget");
   },
 });

@@ -3,6 +3,16 @@ calendar_category:
   default: ""
   description:
     en: "The numeric ID of the category for your Calendar"
+title:
+  type: string
+  default: "Create a booking"
+  description:
+    en: "The title for the booking modal"
+create_label:
+  type: string
+  default: "Create booking"
+  description:
+    en: "The label for the save button of the booking modal"
 require_login:
   type: bool
   default: false

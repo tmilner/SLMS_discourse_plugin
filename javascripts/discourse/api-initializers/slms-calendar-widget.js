@@ -41,7 +41,7 @@ export default apiInitializer("0.1", (api) => {
       title: themePrefix("slms_calendar_widget.title"),
       icon: "calendar-alt",
       active: headerState.slmsCalendarWidgetVisible,
-      action: "toggleSLMSCalendarWidget",
+      action: "toggleSLMSBookingWidget",
     });
   });
 
@@ -52,13 +52,19 @@ export default apiInitializer("0.1", (api) => {
     }
   });
 
-  api.attachWidgetAction("slms-calendar-modal", "submitSLMSCalendarWidget", function(){
+  // api.attachWidgetAction("slms-calendar-modal", "changeSLMSBookingDates", function(changes){
+  //   this.widget.state
+  // });
+  
+  api.attachWidgetAction("slms-calendar-modal", "submitSLMSBookingWidget", function(){
     const currentUser = getOwner(this).lookup("current-user:main");
     if (!currentUser) {
       showModal("login");
       return;
     }
 
+    console.log(getOwner(this));
+    
     getOwner(this).lookup("controller:composer").open({
       action: Composer.CREATE_TOPIC,
       draftKey: "new_topic",
@@ -69,7 +75,7 @@ export default apiInitializer("0.1", (api) => {
     });
   });
 
-  api.attachWidgetAction("header", "toggleSLMSCalendarWidget", function () {
+  api.attachWidgetAction("header", "toggleSLMSBookingWidget", function () {
     this.state.slmsCalendarWidgetVisible = !this.state.slmsCalendarWidgetVisible;
   });
 });
