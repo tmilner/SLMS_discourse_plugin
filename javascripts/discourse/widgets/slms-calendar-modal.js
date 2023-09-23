@@ -3,7 +3,7 @@ import { h } from "virtual-dom";
 import { hbs } from "ember-cli-htmlbars";
 
 createWidget("slms-booking-date-picker", {
-  tagName: "slms-booking-data-picker",
+  tagName: "div.slms-booking-data-picker",
   template: hbs`<DateTimeInputRange
   @from={{startsAt}}
   @to={{endsAt}}
