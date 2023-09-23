@@ -48,15 +48,15 @@ export default apiInitializer("0.1", (api) => {
   api.decorateWidget("header-icons:after", (helper) => {
     const headerState = helper.widget.parentWidget.state;
     if (headerState.slmsCalendarWidgetVisible) {
-      return [helper.attach("slms-calendar-modal")];
+      return [helper.attach("slms-booking-modal")];
     }
   });
 
-  // api.attachWidgetAction("slms-calendar-modal", "changeSLMSBookingDates", function(changes){
+  // api.attachWidgetAction("slms-booking-modal", "changeSLMSBookingDates", function(changes){
   //   this.widget.state
   // });
   
-  api.attachWidgetAction("slms-calendar-modal", "submitSLMSBookingWidget", function(){
+  api.attachWidgetAction("slms-booking-modal", "submitSLMSBookingWidget", function(){
     const currentUser = getOwner(this).lookup("current-user:main");
     if (!currentUser) {
       showModal("login");
