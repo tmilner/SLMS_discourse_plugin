@@ -29,17 +29,18 @@ createWidget("slms-calendar-modal", {
     return this.attach("menu-panel", {
       contents: () => [
         hbs`<DateTimeInputRange
+              @from={{startsAt}}
+              @to={{endsAt}}
               @toTimeFirst={{true}}
               @clearable={{true}}
               @timezone="Europe/London"
               @onChange={{changeSLMSBookingDates}}
             />`,
-        buttonHtml,
       ],
     });
   },
 
-  changeSLMSBookingDates(changes){
+  changeSLMSBookingDates(changes) {
     this.state.start = changes.from;
     this.state.ends = changes.to;
   },
