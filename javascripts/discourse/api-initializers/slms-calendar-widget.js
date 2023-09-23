@@ -62,6 +62,8 @@ export default apiInitializer("0.1", (api) => {
     getOwner(this).lookup("controller:composer").open({
       action: Composer.CREATE_TOPIC,
       draftKey: "new_topic",
+      title: "Space Open",
+      topicBody: "[event start=\"2023-09-23 11:07\" status=\"standalone\" timezone=\"Europe/London\" minimal=\"true\" end=\"2023-09-23 12:07\"][/event]",
       categoryId: settings.calendar_category,
       skipJumpOnSave: true  
     });

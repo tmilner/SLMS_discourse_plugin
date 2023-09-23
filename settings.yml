@@ -2,7 +2,7 @@ calendar_category:
   type: string
   default: ""
   description:
-    en: "The category for your Calendar"
+    en: "The numeric ID of the category for your Calendar"
 require_login:
   type: bool
   default: false
