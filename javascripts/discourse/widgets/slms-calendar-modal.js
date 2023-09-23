@@ -28,8 +28,17 @@ createWidget("slms-booking-modal", {
 
     return this.attach("menu-panel", {
       contents: () => [
-        this.attach("slms-booking-date-picker", attrs),
-        buttonHtml,
+        h("div.picker", [
+          hbs`<DateTimeInputRange
+                @from={{startsAt}}
+                @to={{endsAt}}
+                @toTimeFirst={{true}}
+                @clearable={{true}}
+                @timezone="Europe/London"
+                @onChange={{changeSLMSBookingDates}}
+              />`,
+          buttonHtml,
+        ]),
       ],
     });
   },
@@ -42,16 +51,4 @@ createWidget("slms-booking-modal", {
   clickOutside() {
     this.sendWidgetAction("toggleSLMSBookingWidget");
   },
-});
-
-createWidget("slms-booking-date-picker", {
-  tagName: "slms-booking-data-picker",
-  template: hbs`<DateTimeInputRange
-  @from={{startsAt}}
-  @to={{endsAt}}
-  @toTimeFirst={{true}}
-  @clearable={{true}}
-  @timezone="Europe/London"
-  @onChange={{changeSLMSBookingDates}}
-/>`,
 });
