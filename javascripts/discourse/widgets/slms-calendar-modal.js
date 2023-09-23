@@ -21,7 +21,14 @@ createWidget("slms-calendar-modal", {
       { attributes: { "data-name": "Create" } },
       h("a.widget-link", { attributes: { "data-id": "create" } }, "Create")
     );
-    return [h("ul.menu-links.columned", [buttonHtml]), h(".clearfix"), h("hr")];
+
+    return this.attach("menu-panel", {
+      contents: () => [
+        h("ul.menu-links.columned", [buttonHtml]),
+        h(".clearfix"),
+        h("hr"),
+      ],
+    });
   },
 
   clickOutside() {
