@@ -4,13 +4,13 @@ import hbs from "discourse/widgets/hbs-compiler";
 
 createWidget("slms-booking-date-picker", {
   tagName: "div.slms-booking-data-picker",
-  template: hbs`<h1>HI!!</h1>`,
-});
-/* <DateTimeInputRange
+  template: hbs`<DateTimeInputRange
   @toTimeFirst={{true}}
   @clearable={{true}}
   @onChange={{action "changeSLMSBookingDates"}}
-/> */
+/>`,
+});
+/*  */
 createWidget("slms-booking-modal", {
   tagName: "div.slms-booking-panel",
   buildKey: () => "create_booking",
@@ -35,7 +35,8 @@ createWidget("slms-booking-modal", {
       h("a.widget-link", { attributes: { "data-id": "create" } }, "Create")
     );
 
-    let contents = [h("h1", "Create Space Booking")];
+    let contents = [h("h3", "Create Space Booking")];
+    contents.push(h("hr"));
     contents.push([this.attach("slms-booking-date-picker")]);
     contents.push(buttonHtml);
 
