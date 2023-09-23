@@ -52,9 +52,11 @@ export default apiInitializer("0.1", (api) => {
     }
   });
 
-  // api.attachWidgetAction("slms-booking-modal", "changeSLMSBookingDates", function(changes){
-  //   this.widget.state
-  // });
+  api.attachWidgetAction("slms-booking-modal", "changeSLMSBookingDates", function(changes){
+    console.log(this);
+    this.parentWidget.state.start = changes.from;
+    this.parentWidget.state.ends = changes.to;
+  });
   
   api.attachWidgetAction("slms-booking-modal", "submitSLMSBookingWidget", function(){
     const currentUser = getOwner(this).lookup("current-user:main");
