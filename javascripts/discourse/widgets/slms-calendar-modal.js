@@ -1,6 +1,6 @@
 import { createWidget } from "discourse/widgets/widget";
 import { h } from "virtual-dom";
-import hbs from "discourse/widgets/hbs-compiler";
+import { hbs } from "ember-cli-htmlbars";
 import RenderGlimmer from "discourse/widgets/render-glimmer";
 
 createWidget("slms-booking-modal", {
