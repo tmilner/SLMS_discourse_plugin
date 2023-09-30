@@ -1,16 +1,8 @@
 import { createWidget } from "discourse/widgets/widget";
 import { h } from "virtual-dom";
 import hbs from "discourse/widgets/hbs-compiler";
+import RenderGlimmer from "discourse/widgets/render-glimmer";
 
-createWidget("slms-booking-date-picker", {
-  tagName: "div.slms-booking-data-picker",
-  template: hbs`<DateTimeInputRange
-  @toTimeFirst={{true}}
-  @clearable={{true}}
-  @onChange={{action "changeSLMSBookingDates"}}
-/>`,
-});
-/*  */
 createWidget("slms-booking-modal", {
   tagName: "div.slms-booking-panel",
   buildKey: () => "create_booking",
@@ -28,6 +20,19 @@ createWidget("slms-booking-modal", {
     }
   },
 
+  renderDatePicker() {
+    return new RenderGlimmer(
+      this,
+      "span",
+      hbs`<DateTimeInputRange
+      @toTimeFirst={{true}}
+      @clearable={{true}}
+      @onChange={{action "changeSLMSBookingDates"}}
+    />`,
+      {}
+    );
+  },
+
   html(attrs, state) {
     let buttonHtml = h(
       "li",
@@ -37,11 +42,11 @@ createWidget("slms-booking-modal", {
 
     let contents = [h("h3", "Create Space Booking")];
     contents.push(h("hr"));
-    contents.push([this.attach("slms-booking-date-picker")]);
+    contents.push([this.renderDatePicker()]);
     contents.push(buttonHtml);
 
     return this.attach("menu-panel", {
-      contents: () => contents
+      contents: () => contents,
     });
   },
 
